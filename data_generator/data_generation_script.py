@@ -97,7 +97,7 @@ def generateEvent():
 # Initialize data list with headers
 data=[['Date/Time', 'Source IP', 'Destination IP', 'Event Type', 'Event Group', 'Severity Level']]
 
-# Generate 10 sample events
+# Generate 100 sample events
 for i in range(100):
     generateEvent()
 
