@@ -2,6 +2,8 @@
 import datetime
 from datetime import datetime, timedelta
 import random
+import csv
+import pandas as pd
 
 # Set start/end date/time based on current date/time and set time period (30 days, in this instance)
 timeDelta = timedelta(days=30)
@@ -12,7 +14,7 @@ startDateTime = currentDateTime - timeDelta
 def generateRandomDateTime(start, end):
     timeDelta = end - start
     randomSeconds = random.uniform(0, timeDelta.total_seconds())
-    return start + timedelta(seconds=randomSeconds)
+    return (start + timedelta(seconds=randomSeconds)).strftime("%Y-%m-%d %H:%M:%S")
 
 # Function to generate random SIEM event type
 def generateRandomEventType():
@@ -90,7 +92,17 @@ def generateEvent():
     print(f"Event type: {eventType}")
     print(f"Event group: {eventGroup}")
     print(f"Event severity level: " + assignColor(severityLevel) + f"{severityLevel}" + '\033[0m')
-    
+    data.append([eventDateTime, sourceIP, destIP, eventType, eventGroup, severityLevel])
+  
+# Initialize data list with headers
+data=[['Date/Time', 'Source IP', 'Destination IP', 'Event Type', 'Event Group', 'Severity Level']]
+
 # Generate 10 sample events
-for i in range(10):
+for i in range(100):
     generateEvent()
+
+# Convert data to Pandas DataFrame and save as CSV
+df = pd.DataFrame(data[1:], columns=data[0])
+print("\n" + f"{df}")
+df.to_csv('simulated_siem_events.csv', index=False)
+print("\n" + "Data saved to simulated_siem_events.csv")
