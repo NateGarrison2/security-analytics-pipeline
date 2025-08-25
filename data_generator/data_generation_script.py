@@ -32,6 +32,7 @@ def generateRandomEventType():
                0.01]
     return random.choices(eventTypes, weights)[0]
 
+# Function to assign an event group to the generated event type
 def assignEventGroup(eventType):
     groupAssignment = {
         "loginSuccess": "loginAttempt",
@@ -75,6 +76,7 @@ def generateRandomSourceIPv4():
 def generateRandomDestIPv4():
     return "10." + ".".join(str(random.randint(0, 255)) for i in range(3))
 
+# Function to generate a full event log entry
 def generateEvent():
     eventDateTime = generateRandomDateTime(startDateTime, currentDateTime)
     sourceIP = generateRandomSourceIPv4()
@@ -89,5 +91,6 @@ def generateEvent():
     print(f"Event group: {eventGroup}")
     print(f"Event severity level: " + assignColor(severityLevel) + f"{severityLevel}" + '\033[0m')
     
+# Generate 10 sample events
 for i in range(10):
     generateEvent()
