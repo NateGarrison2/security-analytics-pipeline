@@ -35,6 +35,7 @@ severityNumMap = {
 df['severity'] = df['event_type'].map(severityMap)
 df['severity_score'] = df['severity'].map(severityNumMap)
 
+# Data transformation: Aggregate data to find counts and average severity per source IP
 eventsPerSourceIP = df.groupby('source_ip').size().sort_values(ascending=False)
 averageSeverity = round(df.groupby('destination_ip')['severity_score'].mean().sort_values(ascending=False), 2)
 eventTypeCounts = df['event_type'].value_counts()
@@ -43,7 +44,7 @@ eventTypeCounts = df['event_type'].value_counts()
 df = df.reset_index(drop=True)
 
 # Display the cleaned and transformed DataFrame
-print('\n' + df.to_string())
-print('\n' + eventsPerSourceIP[:5].to_string())
-print('\n' + averageSeverity[:5].to_string())
-print('\n' + eventTypeCounts.to_string())
+print('\n' + f"{df}")
+print('\nHighest event counts per source IP:\n' + eventsPerSourceIP[:5].to_string())
+print('\nHighest average severity per destination IP:\n' + averageSeverity[:5].to_string())
+print('\nCounts of event type:\n' + eventTypeCounts.to_string())
