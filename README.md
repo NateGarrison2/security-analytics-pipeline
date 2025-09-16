@@ -1,0 +1,1 @@
+An end-to end ETL pipeline that generates simulated SIEM (Security Information and Event Management) data, cleans it, and loads it into a PostgreSQL database for analysis. This project demonstrates practical data engineering concepts, containerization with Docker, and database integration with Python.

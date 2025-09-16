@@ -1,7 +1,6 @@
 # Import libraries
 import datetime
 from datetime import datetime, timedelta
-from math import e
 import random
 import pandas as pd
 
@@ -25,18 +24,16 @@ def generateRandomEventType():
         "malware_detected",
         "data_exfiltration",
         "privilege_escalation",
-        "ddos_attack",
         "ransomware_activity"
     ]
     weights = [
-        0.55,  # login_success 
-        0.18,  # login_failure 
-        0.05,  # multiple_login_failures 
-        0.09,  # firewall_block 
-        0.05,  # malware_detected 
-        0.02,  # data_exfiltration 
-        0.02,  # privilege_escalation 
-        0.005, # ddos_attack 
+        0.79,  # login_success 
+        0.08,  # login_failure 
+        0.02,  # multiple_login_failures 
+        0.08,  # firewall_block 
+        0.01,  # malware_detected 
+        0.005,  # data_exfiltration 
+        0.01,  # privilege_escalation 
         0.005  # ransomware_activity 
     ]
     # Have a 1% chance of returning None to simulate null values
@@ -99,11 +96,11 @@ startDateTime = currentDateTime - timeDelta
 data = [['Timestamp', 'Source IP', 'Destination IP', 'Event Type']]
 
 # Generate 100 sample events
-for i in range(100):
+for i in range(1000):
     generateEvent()
 
 # Convert data to Pandas DataFrame and save as CSV
 df = pd.DataFrame(data[1:], columns=data[0])
 print("\n" + f"{df}")
-df.to_csv('simulated_siem_events.csv', index=False)
-print("\n" + "Data saved to simulated_siem_events.csv")
+df.to_csv('../data/simulated_siem_events.csv', index=False)
+print("\n" + "Data saved to ../data/simulated_siem_events.csv")

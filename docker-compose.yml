@@ -1,0 +1,26 @@
+services:
+    db:
+        image: postgres:17
+        container_name: siem_postgres
+        environment:
+            POSTGRES_USER: ${DBUser}
+            POSTGRES_PASSWORD: ${DBPassword}
+            POSTGRES_DB: ${DBName}
+        volumes:
+            - DBData:/var/lib/postgresql/data
+        ports:
+            - "5432:5432"
+    pipeline:
+        build: ./pipeline
+        container_name: siem_pipeline
+        environment:
+            DBHost: db
+            DBUser: ${DBUser}
+            DBPassword: ${DBPassword}
+            DBName: ${DBName}
+        depends_on:
+            - db
+        ports:
+            - "5432:5432"
+volumes:
+    DBData:

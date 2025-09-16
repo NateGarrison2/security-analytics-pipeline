@@ -1,7 +1,7 @@
 import pandas as pd
 
 # Load the simulated SIEM events data
-df = pd.read_csv('../data_generator/simulated_siem_events.csv')
+df = pd.read_csv('../data/simulated_siem_events.csv')
 
 # Normalize column names, convert timestamp to datetime, and sort by timestamp
 df.columns = df.columns.str.lower().str.replace(' ', '_')
@@ -43,8 +43,12 @@ eventTypeCounts = df['event_type'].value_counts()
 # Reset index after cleaning
 df = df.reset_index(drop=True)
 
+# Save the cleaned and transformed data to a new CSV file
+df.to_csv('../data/cleaned_siem_events.csv', index=False)
+
 # Display the cleaned and transformed DataFrame
 print('\n' + f"{df}")
 print('\nHighest event counts per source IP:\n' + eventsPerSourceIP[:5].to_string())
 print('\nHighest average severity per destination IP:\n' + averageSeverity[:5].to_string())
 print('\nCounts of event type:\n' + eventTypeCounts.to_string())
+print('\nCleaned data saved to ../data/cleaned_siem_events.csv')
