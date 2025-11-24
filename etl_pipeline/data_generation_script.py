@@ -50,6 +50,7 @@ def generateEvent():
     eventType = generateRandomEventType()
     data.append([eventDateTime, sourceIP, destIP, eventType])
   
+# Generate source IP addresses in public range
 sourceAddressList = []
 for i in range (80):
     octets = []
@@ -69,7 +70,7 @@ for i in range (80):
     else:
         sourceAddressList.append(None)
     
-
+# Generate destination IP addresses in private range
 destAddressList = []
 for i in range (50):
     octets = []
