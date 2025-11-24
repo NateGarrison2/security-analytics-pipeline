@@ -2,6 +2,8 @@ services:
     postgres:
         image: postgres:17
         container_name: siem_postgres
+        env_file:
+            - ./.env
         environment:
             POSTGRES_USER: ${DBUser}
             POSTGRES_PASSWORD: ${DBPassword}
@@ -15,6 +17,8 @@ services:
         container_name: python_etl
         depends_on:
             - postgres
+        env_file:
+            - ./.env
         environment:
             DB_HOST: postgres
             DB_PORT: 5432
