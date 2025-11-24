@@ -1,5 +1,5 @@
 services:
-    db:
+    postgres:
         image: postgres:17
         container_name: siem_postgres
         environment:
@@ -7,20 +7,20 @@ services:
             POSTGRES_PASSWORD: ${DBPassword}
             POSTGRES_DB: ${DBName}
         volumes:
-            - DBData:/var/lib/postgresql/data
+            - ./DBData:/var/lib/postgresql/data
         ports:
             - "5432:5432"
-    pipeline:
-        build: ./pipeline
-        container_name: siem_pipeline
-        environment:
-            DBHost: db
-            DBUser: ${DBUser}
-            DBPassword: ${DBPassword}
-            DBName: ${DBName}
+    etl:
+        build: ./etl_pipeline
+        container_name: python_etl
         depends_on:
-            - db
-        ports:
-            - "5432:5432"
-volumes:
-    DBData:
+            - postgres
+        environment:
+            DB_HOST: postgres
+            DB_PORT: 5432
+            DB_USER: ${DBUser}
+            DB_PASSWORD: ${DBPassword}
+            DB_NAME: ${DBName}
+        volumes:
+            - ./etl_pipeline/data:/app/data
+        restart: 'no'

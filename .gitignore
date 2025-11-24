@@ -1,1 +1,19 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+venv/
+
+# Environment variables
 .env
+
+# Data
+etl_pipeline/data/*.csv
+
+# Database / Postgres data
+DBData/
+
+# OS / editor files
+.DS_Store
+Thumbs.db
