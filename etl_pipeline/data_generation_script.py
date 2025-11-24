@@ -108,6 +108,6 @@ print("\n" + f"{df}")
 # Save to ./data/simulated_siem_events.csv
 data_dir = os.path.join(os.path.dirname(__file__), 'data')
 os.makedirs(data_dir, exist_ok=True)
-output_file = os.path.join(data_dir, 'cleaned_siem_events.csv')
+output_file = os.path.join(data_dir, 'simulated_siem_events.csv')
 df.to_csv(os.path.join(output_file), index=False)
 print(f"\nData saved to {output_file}")
