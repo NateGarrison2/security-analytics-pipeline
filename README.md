@@ -11,12 +11,9 @@ cd security-analytics-pipeline
 
 2. **Create a local environment file**
 ```bash
-cd etl_pipeline
 copy .env.example .env
-cd ..
 ```
-> Locate .env.example in /etl_pipeline folder and copy to .env, then navigate back to root directory of project.
-> .env is in .gitignore to simulate realistic security practices to avoid leaking information, .env.example is here to allow scripts to run correctly. 
+> .env is in .gitignore to simulate realistic security practices to avoid leaking information, .env.example is here for user to copy to allow scripts that use .env to run correctly. 
 
 3. **Start Docker Desktop**
 > Ensure Docker Desktop is running on your machine.
