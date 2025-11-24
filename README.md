@@ -42,6 +42,7 @@ docker ps
 ```bash
 docker exec -it siem_postgres psql -U siemuser -d siemdb
 ```
+> IMPORTANT: Docker image takes a while to fully build and create the database. If the docker exec command does not work, give it a minute and try again.
 
 7. Query the loaded SIEM events:
 ```sql
