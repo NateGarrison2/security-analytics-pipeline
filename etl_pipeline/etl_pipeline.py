@@ -1,7 +1,13 @@
 import pandas as pd
+import os
+
+# Dynamically determine the data folder path relative to this script
+data_dir = os.path.join(os.path.dirname(__file__), 'data')
+os.makedirs(data_dir, exist_ok=True)
 
 # Load the simulated SIEM events data
-df = pd.read_csv('../data/simulated_siem_events.csv')
+input_file = os.path.join(data_dir, 'simulated_siem_events.csv')
+df = pd.read_csv(input_file)
 
 # Normalize column names, convert timestamp to datetime, and sort by timestamp
 df.columns = df.columns.str.lower().str.replace(' ', '_')
@@ -43,12 +49,13 @@ eventTypeCounts = df['event_type'].value_counts()
 # Reset index after cleaning
 df = df.reset_index(drop=True)
 
-# Save the cleaned and transformed data to a new CSV file
-df.to_csv('../data/cleaned_siem_events.csv', index=False)
+# Save the cleaned and transformed data to a new CSV file dynamically
+output_file = os.path.join(data_dir, 'cleaned_siem_events.csv')
+df.to_csv(output_file, index=False)
 
 # Display the cleaned and transformed DataFrame
 print('\n' + f"{df}")
 print('\nHighest event counts per source IP:\n' + eventsPerSourceIP[:5].to_string())
 print('\nHighest average severity per destination IP:\n' + averageSeverity[:5].to_string())
 print('\nCounts of event type:\n' + eventTypeCounts.to_string())
-print('\nCleaned data saved to ../data/cleaned_siem_events.csv')
+print(f'\nCleaned data saved to {output_file}')
