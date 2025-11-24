@@ -1,0 +1,6 @@
+FROM python:3.13
+RUN apt-get update && apt-get install -y postgresql-client && rm -rf /var/lib/apt/lists/*
+WORKDIR /app
+COPY . /app/etl_pipeline
+RUN pip install --no-cache-dir pandas sqlalchemy psycopg2-binary python-dotenv
+CMD ["python", "-u", "/app/run_all.py"]
