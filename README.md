@@ -1,5 +1,15 @@
 # Security Analytics ETL Pipeline
-An end-to end ETL pipeline that generates simulated SIEM (Security Information and Event Management) data, cleans it, and loads it into a PostgreSQL database for analysis. This project demonstrates practical data engineering concepts, containerization with Docker, and database integration with Python.
+This project is an end-to-end ETL pipeline that generates, processes, and stores simulated SIEM (Security Information and Event Management) data. It demonstrates key data engineering and data science skills, including:
+
+- Data generation and simulation: Creates realistic security event logs using Python and Pandas.
+
+- Data cleaning and transformation: Normalizes, filters, and aggregates data to extract actionable insights.
+
+- Database integration: Loads processed data into PostgreSQL and queries it for analysis.
+
+- Containerization and reproducibility: Uses Docker to isolate and run the pipeline consistently across environments.
+
+This project showcases practical experience in Python-based ETL workflows, data pipeline automation, and working with structured data in both code and databases, all of which are core skills for data science and data engineering roles.
 
 ## Instructions to Run:
 
@@ -46,15 +56,15 @@ docker-compose down
 ```
 
 ## Example Data Section:
-**Running data_generation_script.py:**
+### Running data_generation_script.py:
 <img width="1074" height="395" alt="image" src="https://github.com/user-attachments/assets/18bae5b9-6d65-4229-b2b4-79c48751bf0c" />
 
-**Running etl_pipeline.py:**
+### Running etl_pipeline.py:
 <img width="1262" height="951" alt="image" src="https://github.com/user-attachments/assets/5e60c810-849e-451a-a179-e4c7dffba741" />
 
-**Building Docker container:**
+### Building Docker container:
 <img width="894" height="146" alt="image" src="https://github.com/user-attachments/assets/1f925327-138d-4448-bca4-4be21bdb51e1" />
 <img width="1657" height="728" alt="image" src="https://github.com/user-attachments/assets/9fa143ef-42d6-4d5d-b18e-0703aa69716d" />
 
-**Running PostgreSQL in Docker container:**
+### Running PostgreSQL in Docker container:
 <img width="1336" height="383" alt="image" src="https://github.com/user-attachments/assets/d4de3a9a-eb22-4278-8565-0960b5926658" />
