@@ -22,7 +22,8 @@ copy .env.example .env
 ```bash
 docker-compose up --build
 ```
-> This will build the ETL container, start the PostgreSQL database, generate simulated SIEM data, clean it, and load it into the database.
+> This will build the ETL container, start the PostgreSQL database, generate simulated SIEM data, clean it, and load it into the database. This shows some behind-the-scenes of each of the python scripts running and the PostgreSQL database being created/loaded into. 
+Ctrl+C once python_etl exits with code 0.
 
 5. Verify containers are running:
 ```bash
