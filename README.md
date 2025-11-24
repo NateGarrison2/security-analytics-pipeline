@@ -25,8 +25,7 @@ copy .env.example .env
 ```
 > .env is in .gitignore to simulate realistic security practices to avoid leaking information, .env.example is here for user to copy to allow scripts that use .env to run correctly. 
 
-3. **Start Docker Desktop**
-> Ensure Docker Desktop is running on your machine.
+3. **Ensure Docker Desktop is installed on your machine**
 
 4. **Build and start the containers:**
 ```bash
