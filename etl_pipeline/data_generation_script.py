@@ -3,6 +3,7 @@ import datetime
 from datetime import datetime, timedelta
 import random
 import pandas as pd
+import os
 
 # Function to generate random time between start date/time and end date/time
 def generateRandomDateTime(start, end):
@@ -100,8 +101,13 @@ data = [['Timestamp', 'Source IP', 'Destination IP', 'Event Type']]
 for i in range(1000):
     generateEvent()
 
-# Convert data to Pandas DataFrame and save as CSV
+# Convert to DataFrame and display
 df = pd.DataFrame(data[1:], columns=data[0])
 print("\n" + f"{df}")
-df.to_csv('../data/simulated_siem_events.csv', index=False)
-print("\n" + "Data saved to ../data/simulated_siem_events.csv")
+
+# Save to ./data/simulated_siem_events.csv
+data_dir = os.path.join(os.path.dirname(__file__), 'data')
+os.makedirs(data_dir, exist_ok=True)
+output_file = os.path.join(data_dir, 'cleaned_siem_events.csv')
+df.to_csv(os.path.join(output_file), index=False)
+print(f"\nData saved to {output_file}")
