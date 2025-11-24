@@ -25,32 +25,39 @@ copy .env.example .env
 ```
 > .env is in .gitignore to simulate realistic security practices to avoid leaking information, .env.example is here for user to copy to allow scripts that use .env to run correctly. 
 
-3. **Ensure Docker Desktop is installed and open on your machine**
+3. **Run data generation and data cleaning scripts to create .csv files in /data/**
+```bash
+cd etl_pipeline
+python data_generation_script.py
+python etl_pipeline.py
+```
 
-4. **Build and start the containers:**
+4. **Ensure Docker Desktop is installed and open on your machine**
+
+5. **Build and start the containers:**
 ```bash
 docker-compose up -d --build
 ```
 > This will build the ETL container, start the PostgreSQL database, generate simulated SIEM data, clean it, and load it into the database. This shows some behind-the-scenes of each of the python scripts running and the PostgreSQL database being created/loaded into. Process takes a minute or two.
 
-5. Once build finishes, verify containers are running:
+6. **Once build finishes, verify containers are running:**
 ```bash
 docker ps
 ```
 
-6. Access PostgreSQL database:
+7. Access PostgreSQL database:
 ```bash
 docker exec -it siem_postgres psql -U siemuser -d siemdb
 ```
 > IMPORTANT: Docker image takes a while to fully build and create the database. If the docker exec command does not work, give it a minute and try again.
 
-7. Query the loaded SIEM events:
+8. Query the loaded SIEM events:
 ```sql
 SELECT * FROM siem_events LIMIT 10;
 ```
 > You should see the first 10 rows of the simulated SIEM data.
 
-8. Stop containers once finished:
+9. Stop containers once finished:
 ```bash
 docker-compose down
 ```
